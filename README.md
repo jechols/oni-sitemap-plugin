@@ -34,6 +34,12 @@ INSTALLED_APPS = (
 )
 ```
 
+You **must create** a custom sitemap file in your ONI static files directory
+(typically `static/sitemap-custom.xml`). At a minimum, you likely want your
+homepage, but any URLs that aren't covered by this tool, which you want crawled
+by search engines, can be added. This project contains an example you can base
+your custom sitemap on.
+
 ## Usage
 
 This just adds a new `build_sitemap` management command. Execute that as you
@@ -44,14 +50,8 @@ cd /opt/openoni
 ./manage.py build_sitemap
 ```
 
-### Notes
-
-- You probably want to run this in a cron job, and likely not too often, as it
-  can take a long time to produce a list of every important URL on your site.
-- Put any custom URLs you want into `static/sitemap-custom.xml`. At a minimum,
-  you likely want your homepage, but really any URLs that aren't tied to a
-  batch / title / issue / page which you want crawled by search engines. This
-  project contains an example you can base your custom sitemap on.
+You probably want to run this in a cron job, and likely not too often, as it
+can take a long time to produce a list of every important URL on your site.
 
 ### Apache Setup
 
