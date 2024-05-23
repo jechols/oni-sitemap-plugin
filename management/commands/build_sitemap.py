@@ -36,8 +36,15 @@ class Command(BaseCommand):
         self.tmpdir = 'static/sitemap-tmp'
         self.proddir = 'static/sitemaps'
 
+        custom_sitemap_source = os.path.join('static', CUSTOM_FILENAME)
+        if not os.path.exists(custom_sitemap_source):
+            log.error('Custom sitemap file (%s) is not present; aborting operation' % custom_sitemap_source)
+            return
+
+
         shutil.rmtree(self.tmpdir, ignore_errors = True)
         os.makedirs(self.tmpdir, exist_ok = False)
+        shutil.copyfile(custom_sitemap_source, os.path.join(self.tmpdir, CUSTOM_FILENAME))
         self.write_sitemaps()
         shutil.rmtree(self.proddir, ignore_errors = True)
         os.rename(self.tmpdir, self.proddir)
