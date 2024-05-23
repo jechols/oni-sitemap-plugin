@@ -16,6 +16,8 @@ log = logging.getLogger(__name__)
 # Per https://www.sitemaps.org/protocol.html, max URLs is 50k per file
 MAX_URLS = 50000
 
+CUSTOM_FILENAME = 'sitemap-custom.xml'
+
 class Command(BaseCommand):
     help = '''
         Creates a sitemap.xml with links to other sitemap files as needed in
@@ -84,7 +86,7 @@ class Command(BaseCommand):
         path = os.path.join(self.tmpdir, 'sitemap.xml')
         sitemap_index = open(path, 'w')
         sitemap_index.write('<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
-        sitemap_index.write('<sitemap><loc>%s</loc></sitemap>\n' % urljoin(settings.BASE_URL, 'sitemap-custom.xml'))
+        sitemap_index.write('<sitemap><loc>%s</loc></sitemap>\n' % urljoin(settings.BASE_URL, CUSTOM_FILENAME))
 
         for sitemap in self.indexes:
             sitemap_index.write('<sitemap><loc>%s</loc></sitemap>\n' % sitemap)
