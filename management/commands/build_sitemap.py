@@ -43,11 +43,6 @@ class Command(BaseCommand):
         os.rename(self.tmpdir, self.proddir)
 
     def write_sitemaps(self):
-        """
-        Writes a sitemap index file that references individual sitemaps for all the
-        batches, issues, pages and titles that have been loaded.
-        """
-
         self.sitemap_id = 0
         self.urls = []
         self.indexes = []
