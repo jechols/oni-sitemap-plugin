@@ -64,6 +64,16 @@ source ENV/bin/activate
 ./manage.py build_sitemap >/var/log/build-sitemap.log 2>&1
 ```
 
+### `robots.txt`
+
+We included the sitemap information in `robots.txt` in order to ensure search
+engines are likely to find it easily. Most search engines appear to check for a
+sitemap, but it doesn't hurt to explicitly specify it. e.g.,
+
+```
+Sitemap: https://oregonnews.uoregon.edu/sitemap.xml
+```
+
 ### Apache Setup
 
 You will want your web server to serve up sitemap files, as ONI currently
