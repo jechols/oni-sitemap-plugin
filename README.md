@@ -50,8 +50,19 @@ cd /opt/openoni
 ./manage.py build_sitemap
 ```
 
+### Cron
+
 You probably want to run this in a cron job, and likely not too often, as it
 can take a long time to produce a list of every important URL on your site.
+
+We put this into `/etc/cron.daily/build-sitemap.sh`:
+
+```bash
+#!/bin/bash
+cd /opt/openoni
+source ENV/bin/activate
+./manage.py build_sitemap >/var/log/build-sitemap.log 2>&1
+```
 
 ### Apache Setup
 
